@@ -43,6 +43,15 @@ La regla de tarifa está en servicios porque pertenece al negocio. El controlado
 
 ## 4. Demostración paso a paso
 
+### Registro desde la interfaz
+
+Después de iniciar el servidor, abre **http://localhost:3000**. Completa el formulario con un cliente, una mascota, un servicio, fecha, hora y precio 100000. Activa prioridad para mostrar el recargo del 2 % y el total 102000. Pulsa **Registrar turno**, muestra la reserva en la agenda y abre **Ver detalle**. También demuestra búsqueda y filtros.
+
+Explica que `public/app.js` realiza solicitudes HTTP: la cotización no guarda turnos, el POST de registro crea el recurso y los GET actualizan la agenda y el detalle. El cálculo monetario permanece en `services/turnosService.js`.
+
+Para reproducir los IDs de los siguientes ejemplos desde 1, reinicia el servidor después de esta demostración visual; los datos están en memoria.
+
+
 En la primera terminal:
 
 ```bash
