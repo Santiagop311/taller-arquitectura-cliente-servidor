@@ -130,7 +130,6 @@ taller-arquitectura-cliente-servidor/
 │   ├── servicios.test.js
 │   └── interfaz.test.js
 ├── docs/
-│   ├── sustentacion.md
 │   └── solicitudes.http
 └── README.md
 ```
@@ -318,7 +317,7 @@ npm test
 
 La suite comprueba los cálculos, los estados HTTP, los tipos y campos obligatorios, las fechas inválidas y que una entrada incorrecta no interrumpa el servicio.
 
-El archivo `docs/solicitudes.http` reúne solicitudes manuales que se pueden ejecutar con un cliente compatible con archivos HTTP, como la extensión REST Client de VS Code. La explicación para exponer el proyecto está en [la guía de sustentación](docs/sustentacion.md).
+El archivo `docs/solicitudes.http` reúne solicitudes manuales que se pueden ejecutar con un cliente compatible con archivos HTTP, como la extensión REST Client de VS Code.
 
 ## 9. Verificación de requisitos y entrega
 
@@ -331,8 +330,6 @@ El archivo `docs/solicitudes.http` reúne solicitudes manuales que se pueden eje
 - [x] README con integrantes, negocio y ejemplos JSON de éxito y error.
 - [x] `package.json` y `.gitignore` que excluye `node_modules`.
 - [x] Pruebas y material para preparar la sustentación.
-- [ ] Presentar la sustentación en la fecha y el orden que indique el docente.
-- [ ] Realizar la única entrega del equipo en la plataforma institucional, con el enlace al repositorio público de GitHub, dentro del plazo establecido por el docente.
 
 La entrega en la plataforma y la exposición deben realizarlas los integrantes del equipo.
 
