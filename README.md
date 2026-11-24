@@ -4,8 +4,7 @@
 **Programa:** Profesional en Ingeniería de Software, CIAF.  
 **Grupo:** jueves.
 
-**Repositorio público:** https://github.com/Santiagop311/taller-arquitectura-cliente-servidor
-
+  
 API REST construida con Node.js y Express para registrar y consultar turnos de una clínica veterinaria. Aplica arquitectura por capas, almacenamiento en memoria y una tarifa de atención prioritaria determinada por el número de lista del equipo.
 
 ## 1. Integrantes y parámetro N
