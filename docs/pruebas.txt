@@ -1,0 +1,387 @@
+
+> taller-arquitectura-cliente-servidor@1.0.0 test
+> node --test
+
+TAP version 13
+# Subtest: La API cumple el contrato HTTP y permanece disponible ante entradas inválidas
+    # Subtest: GET /api/turnos devuelve 200 y una lista vacía inicialmente
+    ok 1 - GET /api/turnos devuelve 200 y una lista vacía inicialmente
+      ---
+      duration_ms: 105.117649
+      type: 'test'
+      ...
+    # Subtest: POST prioritario devuelve 201, el turno y el recargo real del equipo
+    ok 2 - POST prioritario devuelve 201, el turno y el recargo real del equipo
+      ---
+      duration_ms: 37.984312
+      type: 'test'
+      ...
+    # Subtest: GET /api/turnos/:id devuelve 200 y el mismo objeto creado
+    ok 3 - GET /api/turnos/:id devuelve 200 y el mismo objeto creado
+      ---
+      duration_ms: 11.850063
+      type: 'test'
+      ...
+    # Subtest: POST con prioritario false conserva el precio base
+    ok 4 - POST con prioritario false conserva el precio base
+      ---
+      duration_ms: 7.873336
+      type: 'test'
+      ...
+    # Subtest: POST con prioritario undefined conserva el precio base
+    ok 5 - POST con prioritario undefined conserva el precio base
+      ---
+      duration_ms: 12.771918
+      type: 'test'
+      ...
+    # Subtest: El cliente no puede asignar el identificador ni el precio calculado
+    ok 6 - El cliente no puede asignar el identificador ni el precio calculado
+      ---
+      duration_ms: 9.263291
+      type: 'test'
+      ...
+    # Subtest: Los textos se guardan sin espacios sobrantes
+    ok 7 - Los textos se guardan sin espacios sobrantes
+      ---
+      duration_ms: 12.378611
+      type: 'test'
+      ...
+    # Subtest: POST sin el campo obligatorio nombreCliente devuelve 400 descriptivo
+    ok 8 - POST sin el campo obligatorio nombreCliente devuelve 400 descriptivo
+      ---
+      duration_ms: 9.591399
+      type: 'test'
+      ...
+    # Subtest: POST sin el campo obligatorio nombreMascota devuelve 400 descriptivo
+    ok 9 - POST sin el campo obligatorio nombreMascota devuelve 400 descriptivo
+      ---
+      duration_ms: 17.227027
+      type: 'test'
+      ...
+    # Subtest: POST sin el campo obligatorio tipoServicio devuelve 400 descriptivo
+    ok 10 - POST sin el campo obligatorio tipoServicio devuelve 400 descriptivo
+      ---
+      duration_ms: 15.340595
+      type: 'test'
+      ...
+    # Subtest: POST sin el campo obligatorio fechaHora devuelve 400 descriptivo
+    ok 11 - POST sin el campo obligatorio fechaHora devuelve 400 descriptivo
+      ---
+      duration_ms: 20.209167
+      type: 'test'
+      ...
+    # Subtest: POST sin el campo obligatorio precioBase devuelve 400 descriptivo
+    ok 12 - POST sin el campo obligatorio precioBase devuelve 400 descriptivo
+      ---
+      duration_ms: 17.850574
+      type: 'test'
+      ...
+    # Subtest: POST rechaza nombreCliente = ""
+    ok 13 - POST rechaza nombreCliente = ""
+      ---
+      duration_ms: 21.231751
+      type: 'test'
+      ...
+    # Subtest: POST rechaza nombreCliente = "   "
+    ok 14 - POST rechaza nombreCliente = "   "
+      ---
+      duration_ms: 17.003322
+      type: 'test'
+      ...
+    # Subtest: POST rechaza nombreCliente = null
+    ok 15 - POST rechaza nombreCliente = null
+      ---
+      duration_ms: 21.819032
+      type: 'test'
+      ...
+    # Subtest: POST rechaza nombreCliente = 123
+    ok 16 - POST rechaza nombreCliente = 123
+      ---
+      duration_ms: 18.761768
+      type: 'test'
+      ...
+    # Subtest: POST rechaza nombreMascota = ""
+    ok 17 - POST rechaza nombreMascota = ""
+      ---
+      duration_ms: 21.195966
+      type: 'test'
+      ...
+    # Subtest: POST rechaza nombreMascota = "   "
+    ok 18 - POST rechaza nombreMascota = "   "
+      ---
+      duration_ms: 19.453055
+      type: 'test'
+      ...
+    # Subtest: POST rechaza nombreMascota = null
+    ok 19 - POST rechaza nombreMascota = null
+      ---
+      duration_ms: 19.688063
+      type: 'test'
+      ...
+    # Subtest: POST rechaza nombreMascota = 123
+    ok 20 - POST rechaza nombreMascota = 123
+      ---
+      duration_ms: 32.155652
+      type: 'test'
+      ...
+    # Subtest: POST rechaza tipoServicio = ""
+    ok 21 - POST rechaza tipoServicio = ""
+      ---
+      duration_ms: 29.216311
+      type: 'test'
+      ...
+    # Subtest: POST rechaza tipoServicio = "   "
+    ok 22 - POST rechaza tipoServicio = "   "
+      ---
+      duration_ms: 23.42248
+      type: 'test'
+      ...
+    # Subtest: POST rechaza tipoServicio = null
+    ok 23 - POST rechaza tipoServicio = null
+      ---
+      duration_ms: 40.966462
+      type: 'test'
+      ...
+    # Subtest: POST rechaza tipoServicio = 123
+    ok 24 - POST rechaza tipoServicio = 123
+      ---
+      duration_ms: 30.711812
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = 0
+    ok 25 - POST rechaza precioBase = 0
+      ---
+      duration_ms: 26.546742
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = -10
+    ok 26 - POST rechaza precioBase = -10
+      ---
+      duration_ms: 20.758766
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = null
+    ok 27 - POST rechaza precioBase = null
+      ---
+      duration_ms: 20.980168
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = "100000"
+    ok 28 - POST rechaza precioBase = "100000"
+      ---
+      duration_ms: 14.814354
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = true
+    ok 29 - POST rechaza precioBase = true
+      ---
+      duration_ms: 15.147274
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = []
+    ok 30 - POST rechaza precioBase = []
+      ---
+      duration_ms: 14.52918
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = {}
+    ok 31 - POST rechaza precioBase = {}
+      ---
+      duration_ms: 12.670687
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = 1.001
+    ok 32 - POST rechaza precioBase = 1.001
+      ---
+      duration_ms: 14.269983
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = 1e-9
+    ok 33 - POST rechaza precioBase = 1e-9
+      ---
+      duration_ms: 21.489604
+      type: 'test'
+      ...
+    # Subtest: POST rechaza precioBase = 1000000001
+    ok 34 - POST rechaza precioBase = 1000000001
+      ---
+      duration_ms: 24.029296
+      type: 'test'
+      ...
+    # Subtest: POST rechaza prioritario = "true"
+    ok 35 - POST rechaza prioritario = "true"
+      ---
+      duration_ms: 22.644993
+      type: 'test'
+      ...
+    # Subtest: POST rechaza prioritario = "false"
+    ok 36 - POST rechaza prioritario = "false"
+      ---
+      duration_ms: 14.727274
+      type: 'test'
+      ...
+    # Subtest: POST rechaza prioritario = 1
+    ok 37 - POST rechaza prioritario = 1
+      ---
+      duration_ms: 14.146451
+      type: 'test'
+      ...
+    # Subtest: POST rechaza prioritario = null
+    ok 38 - POST rechaza prioritario = null
+      ---
+      duration_ms: 10.531549
+      type: 'test'
+      ...
+    # Subtest: POST rechaza fechaHora = "no es una fecha"
+    ok 39 - POST rechaza fechaHora = "no es una fecha"
+      ---
+      duration_ms: 9.423258
+      type: 'test'
+      ...
+    # Subtest: POST rechaza fechaHora = "2026-02-30T09:00:00Z"
+    ok 40 - POST rechaza fechaHora = "2026-02-30T09:00:00Z"
+      ---
+      duration_ms: 12.507006
+      type: 'test'
+      ...
+    # Subtest: POST rechaza fechaHora = "2026-12-01T25:00:00Z"
+    ok 41 - POST rechaza fechaHora = "2026-12-01T25:00:00Z"
+      ---
+      duration_ms: 12.673409
+      type: 'test'
+      ...
+    # Subtest: POST rechaza fechaHora = "2026-12-01"
+    ok 42 - POST rechaza fechaHora = "2026-12-01"
+      ---
+      duration_ms: 12.949012
+      type: 'test'
+      ...
+    # Subtest: POST rechaza fechaHora = null
+    ok 43 - POST rechaza fechaHora = null
+      ---
+      duration_ms: 13.92549
+      type: 'test'
+      ...
+    # Subtest: POST rechaza un cuerpo JSON que no sea objeto: null
+    ok 44 - POST rechaza un cuerpo JSON que no sea objeto: null
+      ---
+      duration_ms: 17.582328
+      type: 'test'
+      ...
+    # Subtest: POST rechaza un cuerpo JSON que no sea objeto: []
+    ok 45 - POST rechaza un cuerpo JSON que no sea objeto: []
+      ---
+      duration_ms: 9.148544
+      type: 'test'
+      ...
+    # Subtest: POST rechaza un cuerpo JSON que no sea objeto: "texto"
+    ok 46 - POST rechaza un cuerpo JSON que no sea objeto: "texto"
+      ---
+      duration_ms: 10.054198
+      type: 'test'
+      ...
+    # Subtest: POST sin cuerpo devuelve 400 JSON
+    ok 47 - POST sin cuerpo devuelve 400 JSON
+      ---
+      duration_ms: 6.642635
+      type: 'test'
+      ...
+    # Subtest: JSON mal formado devuelve 400 JSON
+    ok 48 - JSON mal formado devuelve 400 JSON
+      ---
+      duration_ms: 10.418424
+      type: 'test'
+      ...
+    # Subtest: Un cuerpo que supera el límite devuelve 413 JSON
+    ok 49 - Un cuerpo que supera el límite devuelve 413 JSON
+      ---
+      duration_ms: 11.646064
+      type: 'test'
+      ...
+    # Subtest: GET de identificador inexistente o ambiguo 999999 devuelve 404
+    ok 50 - GET de identificador inexistente o ambiguo 999999 devuelve 404
+      ---
+      duration_ms: 5.628291
+      type: 'test'
+      ...
+    # Subtest: GET de identificador inexistente o ambiguo abc devuelve 404
+    ok 51 - GET de identificador inexistente o ambiguo abc devuelve 404
+      ---
+      duration_ms: 3.470957
+      type: 'test'
+      ...
+    # Subtest: GET de identificador inexistente o ambiguo 1abc devuelve 404
+    ok 52 - GET de identificador inexistente o ambiguo 1abc devuelve 404
+      ---
+      duration_ms: 4.884441
+      type: 'test'
+      ...
+    # Subtest: GET de identificador inexistente o ambiguo 0 devuelve 404
+    ok 53 - GET de identificador inexistente o ambiguo 0 devuelve 404
+      ---
+      duration_ms: 6.442209
+      type: 'test'
+      ...
+    # Subtest: GET de identificador inexistente o ambiguo -1 devuelve 404
+    ok 54 - GET de identificador inexistente o ambiguo -1 devuelve 404
+      ---
+      duration_ms: 6.577
+      type: 'test'
+      ...
+    # Subtest: Una ruta desconocida devuelve 404 JSON
+    ok 55 - Una ruta desconocida devuelve 404 JSON
+      ---
+      duration_ms: 8.821041
+      type: 'test'
+      ...
+    # Subtest: Los errores no guardan registros parciales ni detienen el servidor
+    ok 56 - Los errores no guardan registros parciales ni detienen el servidor
+      ---
+      duration_ms: 8.89931
+      type: 'test'
+      ...
+    1..56
+ok 1 - La API cumple el contrato HTTP y permanece disponible ante entradas inválidas
+  ---
+  duration_ms: 1056.88782
+  type: 'test'
+  ...
+# Subtest: El equipo oficial determina N = 1 y un recargo del 2 %
+ok 2 - El equipo oficial determina N = 1 y un recargo del 2 %
+  ---
+  duration_ms: 15.982757
+  type: 'test'
+  ...
+# Subtest: La fórmula usa el parámetro N, incluso si cambia entre equipos
+ok 3 - La fórmula usa el parámetro N, incluso si cambia entre equipos
+  ---
+  duration_ms: 1.533744
+  type: 'test'
+  ...
+# Subtest: Sin prioridad, false u omitida, se conserva el precio base
+ok 4 - Sin prioridad, false u omitida, se conserva el precio base
+  ---
+  duration_ms: 1.543317
+  type: 'test'
+  ...
+# Subtest: Los montos monetarios se redondean a dos decimales
+ok 5 - Los montos monetarios se redondean a dos decimales
+  ---
+  duration_ms: 1.335014
+  type: 'test'
+  ...
+# Subtest: El servicio almacena turnos y asigna identificadores únicos
+ok 6 - El servicio almacena turnos y asigna identificadores únicos
+  ---
+  duration_ms: 3.168208
+  type: 'test'
+  ...
+1..6
+# tests 62
+# suites 0
+# pass 62
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2054.09677

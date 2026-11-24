@@ -1,0 +1,57 @@
+@baseUrl = http://localhost:3000
+
+### 1. Listar todos los turnos - 200
+GET {{baseUrl}}/api/turnos
+
+### 2. Crear prioritario - 201; precio 100000 + 2 % = 102000
+POST {{baseUrl}}/api/turnos
+Content-Type: application/json
+
+{
+  "nombreCliente": "Ana Torres",
+  "nombreMascota": "Luna",
+  "tipoServicio": "Consulta veterinaria",
+  "fechaHora": "2026-12-01T10:00:00-05:00",
+  "precioBase": 100000,
+  "prioritario": true
+}
+
+### 3. Consultar el primer turno - 200 después de crearlo
+GET {{baseUrl}}/api/turnos/1
+
+### 4. Crear sin prioridad - 201, total 100000
+POST {{baseUrl}}/api/turnos
+Content-Type: application/json
+
+{
+  "nombreCliente": "Carlos Perez",
+  "nombreMascota": "Max",
+  "tipoServicio": "Vacunación",
+  "fechaHora": "2026-12-01T11:00:00-05:00",
+  "precioBase": 100000
+}
+
+### 5. Precio inválido - 400
+POST {{baseUrl}}/api/turnos
+Content-Type: application/json
+
+{
+  "nombreCliente": "Ana Torres",
+  "nombreMascota": "Luna",
+  "tipoServicio": "Consulta veterinaria",
+  "fechaHora": "2026-12-01T10:00:00-05:00",
+  "precioBase": 0,
+  "prioritario": true
+}
+
+### 6. Campos obligatorios faltantes - 400
+POST {{baseUrl}}/api/turnos
+Content-Type: application/json
+
+{}
+
+### 7. Turno inexistente - 404
+GET {{baseUrl}}/api/turnos/999
+
+### 8. Identificador inválido - 404
+GET {{baseUrl}}/api/turnos/1abc

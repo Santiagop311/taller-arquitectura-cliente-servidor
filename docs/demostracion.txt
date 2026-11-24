@@ -1,0 +1,84 @@
+
+> taller-arquitectura-cliente-servidor@1.0.0 demo
+> node scripts/demo.js --guardar
+
+200 GET /api/turnos - Lista vacía al iniciar
+[]
+201 POST /api/turnos - Turno prioritario con recargo del 2 %
+{
+  "id": 1,
+  "nombreCliente": "Ana Torres",
+  "nombreMascota": "Luna",
+  "tipoServicio": "Consulta veterinaria",
+  "fechaHora": "2026-12-01T10:00:00-05:00",
+  "precioBase": 100000,
+  "prioritario": true,
+  "porcentajeRecargo": 2,
+  "valorRecargo": 2000,
+  "totalPagar": 102000
+}
+200 GET /api/turnos/1 - Consulta de turno existente
+{
+  "id": 1,
+  "nombreCliente": "Ana Torres",
+  "nombreMascota": "Luna",
+  "tipoServicio": "Consulta veterinaria",
+  "fechaHora": "2026-12-01T10:00:00-05:00",
+  "precioBase": 100000,
+  "prioritario": true,
+  "porcentajeRecargo": 2,
+  "valorRecargo": 2000,
+  "totalPagar": 102000
+}
+400 POST /api/turnos - Precio cero rechazado
+{
+  "mensaje": "Datos de entrada inválidos.",
+  "errores": [
+    "precioBase debe ser un número mayor que cero y menor o igual a 1000000000."
+  ]
+}
+404 GET /api/turnos/999 - Identificador inexistente
+{
+  "mensaje": "Turno no encontrado."
+}
+201 POST /api/turnos - Prioridad omitida, sin recargo
+{
+  "id": 2,
+  "nombreCliente": "Ana Torres",
+  "nombreMascota": "Luna",
+  "tipoServicio": "Consulta veterinaria",
+  "fechaHora": "2026-12-01T10:00:00-05:00",
+  "precioBase": 100000,
+  "prioritario": false,
+  "porcentajeRecargo": 0,
+  "valorRecargo": 0,
+  "totalPagar": 100000
+}
+200 GET /api/turnos - Lista final; la petición inválida no guardó datos
+[
+  {
+    "id": 1,
+    "nombreCliente": "Ana Torres",
+    "nombreMascota": "Luna",
+    "tipoServicio": "Consulta veterinaria",
+    "fechaHora": "2026-12-01T10:00:00-05:00",
+    "precioBase": 100000,
+    "prioritario": true,
+    "porcentajeRecargo": 2,
+    "valorRecargo": 2000,
+    "totalPagar": 102000
+  },
+  {
+    "id": 2,
+    "nombreCliente": "Ana Torres",
+    "nombreMascota": "Luna",
+    "tipoServicio": "Consulta veterinaria",
+    "fechaHora": "2026-12-01T10:00:00-05:00",
+    "precioBase": 100000,
+    "prioritario": false,
+    "porcentajeRecargo": 0,
+    "valorRecargo": 0,
+    "totalPagar": 100000
+  }
+]
+Evidencia guardada en docs/evidencia.json.
