@@ -41,6 +41,32 @@ function obtenerTurno(req, res) {
   return res.status(200).json(turno);
 }
 
+function validarTarifa(datos) {
+  const errores = [];
+  const precio = datos.precioBase;
+  if (typeof precio !== 'number' || !Number.isFinite(precio) || precio <= 0 || precio > 1_000_000_000) {
+    errores.push('precioBase debe ser un número mayor que cero y menor o igual a 1000000000.');
+  } else if (Math.round(precio * 100) < 1 || Math.abs(precio * 100 - Math.round(precio * 100)) > 1e-6) {
+    errores.push('precioBase debe tener como máximo dos decimales.');
+  }
+  if (datos.prioritario !== undefined && typeof datos.prioritario !== 'boolean') {
+    errores.push('prioritario debe ser true o false.');
+  }
+  return errores;
+}
+
+function cotizarTurno(req, res) {
+  const datos = req.body;
+  if (datos === null || typeof datos !== 'object' || Array.isArray(datos)) {
+    return res.status(400).json({ mensaje: 'El cuerpo debe ser un objeto JSON.' });
+  }
+  const errores = validarTarifa(datos);
+  if (errores.length > 0) {
+    return res.status(400).json({ mensaje: 'Datos de entrada inválidos.', errores });
+  }
+  return res.status(200).json(turnosService.cotizarTurno(datos));
+}
+
 function crearTurno(req, res) {
   const datos = req.body;
   if (datos === null || typeof datos !== 'object' || Array.isArray(datos)) {
@@ -58,16 +84,7 @@ function crearTurno(req, res) {
     errores.push('fechaHora debe ser una fecha y hora ISO válida con zona horaria, por ejemplo 2026-12-01T10:00:00-05:00.');
   }
 
-  const precio = datos.precioBase;
-  if (typeof precio !== 'number' || !Number.isFinite(precio) || precio <= 0 || precio > 1_000_000_000) {
-    errores.push('precioBase debe ser un número mayor que cero y menor o igual a 1000000000.');
-  } else if (Math.round(precio * 100) < 1 || Math.abs(precio * 100 - Math.round(precio * 100)) > 1e-6) {
-    errores.push('precioBase debe tener como máximo dos decimales.');
-  }
-
-  if (datos.prioritario !== undefined && typeof datos.prioritario !== 'boolean') {
-    errores.push('prioritario debe ser true o false.');
-  }
+  errores.push(...validarTarifa(datos));
 
   if (errores.length > 0) {
     return res.status(400).json({ mensaje: 'Datos de entrada inválidos.', errores });
@@ -79,11 +96,11 @@ function crearTurno(req, res) {
     nombreMascota: datos.nombreMascota.trim(),
     tipoServicio: datos.tipoServicio.trim(),
     fechaHora: datos.fechaHora,
-    precioBase: precio,
+    precioBase: datos.precioBase,
     prioritario: datos.prioritario ?? false,
   });
 
   return res.location(`/api/turnos/${turno.id}`).status(201).json(turno);
 }
 
-module.exports = { listarTurnos, obtenerTurno, crearTurno };
+module.exports = { listarTurnos, obtenerTurno, crearTurno, cotizarTurno };
