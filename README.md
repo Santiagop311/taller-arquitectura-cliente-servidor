@@ -92,6 +92,19 @@ npm run dev
 
 Este comando utiliza `node --watch`. Al reiniciar, el arreglo de turnos vuelve a estar vacío.
 
+### Interfaz web: registrar sin comandos
+
+Con `npm start` encendido, abre **http://localhost:3000**. La dirección `/api/turnos` muestra JSON; la raíz `/` abre la aplicación **VetTurnos**.
+
+1. Escribe el nombre del cliente y de la mascota y selecciona el servicio.
+2. Elige fecha y hora de atención en horario de Colombia (UTC−5).
+3. Ingresa el precio base. Activa **Atención prioritaria** si corresponde.
+4. Revisa el resumen: con 100000 y prioridad, el total es 102000. La cotización se calcula en servicios, sin crear una reserva.
+5. Pulsa **Registrar turno**. La agenda y los indicadores se actualizan con el registro real devuelto por la API.
+6. Usa la búsqueda, los filtros y **Ver detalle** para consultar los turnos. **Actualizar** sincroniza también los registros creados desde curl o un cliente HTTP.
+
+La interfaz no carga datos ficticios. Los registros siguen almacenados en memoria: reiniciar el servidor vacía la agenda. Si el servidor ya estaba abierto cuando agregaste la interfaz, detenlo con Ctrl+C y vuelve a ejecutar `npm start`.
+
 ## 5. Estructura y responsabilidades
 
 ```text
@@ -100,6 +113,10 @@ taller-arquitectura-cliente-servidor/
 ├── package.json
 ├── package-lock.json
 ├── .gitignore
+├── public/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
 ├── config/
 │   └── equipo.json
 ├── routes/
@@ -112,7 +129,8 @@ taller-arquitectura-cliente-servidor/
 │   └── turnosService.js
 ├── test/
 │   ├── api.test.js
-│   └── servicios.test.js
+│   ├── servicios.test.js
+│   └── interfaz.test.js
 ├── scripts/
 │   └── demo.js
 ├── docs/
@@ -130,6 +148,7 @@ taller-arquitectura-cliente-servidor/
 | `routes/` | Asociar los métodos y las rutas HTTP con el controlador correspondiente. |
 | `controllers/` | Leer `req`, validar entradas y construir `res` con los códigos HTTP apropiados. |
 | `services/` | Obtener N, aplicar la regla de recargo, asignar identificadores y gestionar el arreglo de turnos. |
+| `public/` | Interfaz en HTML, CSS y JavaScript: formulario, agenda y consultas a la API. Los precios definitivos se calculan en servicios. |
 | `config/equipo.json` | Conservar los nombres, apellidos y números oficiales del equipo. |
 
 El flujo de una creación es: cliente HTTP → ruta → controlador y validaciones → servicio y cálculo → respuesta del controlador.
@@ -143,6 +162,8 @@ Los datos se almacenan **en un arreglo en memoria** durante la ejecución. No se
 | `GET` | `/api/turnos` | 200 y arreglo de turnos, incluso si está vacío. | - |
 | `GET` | `/api/turnos/:id` | 200 y turno encontrado. | 404 si el identificador no existe o no tiene un formato válido. |
 | `POST` | `/api/turnos` | 201 y turno creado; encabezado `Location` con su URL. | 400 si faltan campos o los datos no son válidos. |
+
+La interfaz añade un endpoint auxiliar, `POST /api/turnos/cotizacion`. Recibe `{"precioBase":100000,"prioritario":true}` y responde 200 con `precioBase`, `prioritario`, `porcentajeRecargo`, `valorRecargo` y `totalPagar`. Comparte las validaciones monetarias y la función de cálculo del registro. **No almacena un turno ni consume identificadores.**
 
 Los errores se devuelven en JSON. Además, un JSON mal formado devuelve 400, un cuerpo mayor de 16 KB devuelve 413 y una ruta desconocida devuelve 404.
 
@@ -302,7 +323,7 @@ Para ejecutar las pruebas de servicios y HTTP:
 npm test
 ```
 
-La verificación ejecutada pasó **62 pruebas, sin fallos**. Los resultados están en [docs/pruebas.txt](docs/pruebas.txt); las respuestas HTTP reales, en [docs/evidencia.json](docs/evidencia.json) y [docs/demostracion.txt](docs/demostracion.txt). La demostración inicia un servidor temporal con su propio arreglo y lo cierra al terminar.
+La verificación ejecutada pasó **86 pruebas, sin fallos**. Los resultados están en [docs/pruebas.txt](docs/pruebas.txt); las respuestas HTTP reales, en [docs/evidencia.json](docs/evidencia.json) y [docs/demostracion.txt](docs/demostracion.txt). La demostración inicia un servidor temporal con su propio arreglo y lo cierra al terminar.
 
 La suite comprueba los cálculos, los estados HTTP, los tipos y campos obligatorios, las fechas inválidas y que una entrada incorrecta no interrumpa el servicio.
 

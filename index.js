@@ -1,17 +1,19 @@
 const express = require('express');
+const path = require('node:path');
 const turnosRoutes = require('./routes/turnosRoutes');
 const { rutaNoEncontrada, manejarError } = require('./controllers/errorController');
 
 const app = express();
 app.use(express.json({ limit: '16kb' }));
 app.use('/api/turnos', turnosRoutes);
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(rutaNoEncontrada);
 app.use(manejarError);
 
 if (require.main === module) {
   const puerto = process.env.PORT || 3000;
   const servidor = app.listen(puerto, (error) => {
-    if (!error) console.log(`API de turnos disponible en http://localhost:${puerto}/api/turnos`);
+    if (!error) console.log(`VetTurnos disponible en http://localhost:${puerto}`);
   });
 
   servidor.on('error', (error) => {
