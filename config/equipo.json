@@ -1,0 +1,9 @@
+{
+  "grupo": "jueves",
+  "integrantes": [
+    { "apellidos": "Arbelaez Medina", "nombres": "Johan Andres", "numeroLista": 1 },
+    { "apellidos": "Galindo Rodriguez", "nombres": "Luis Eduardo", "numeroLista": 10 },
+    { "apellidos": "Parra Murillo", "nombres": "Santiago", "numeroLista": 18 },
+    { "apellidos": "Zapata Mejia", "nombres": "Santiago", "numeroLista": 24 }
+  ]
+}
