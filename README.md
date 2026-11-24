@@ -76,8 +76,6 @@ npm install
 npm start
 ```
 
-En la carpeta local ya están instaladas las dependencias; también puedes ejecutar `./iniciar.sh`. En un clon nuevo utiliza primero `npm ci` (o `npm install`).
-
 El servidor escucha por defecto en `http://localhost:3000`. Para utilizar otro puerto en Bash:
 
 ```bash
@@ -131,14 +129,9 @@ taller-arquitectura-cliente-servidor/
 │   ├── api.test.js
 │   ├── servicios.test.js
 │   └── interfaz.test.js
-├── scripts/
-│   └── demo.js
 ├── docs/
 │   ├── sustentacion.md
-│   ├── solicitudes.http
-│   ├── evidencia.json
-│   ├── demostracion.txt
-│   └── pruebas.txt
+│   └── solicitudes.http
 └── README.md
 ```
 
@@ -315,7 +308,7 @@ Cada POST válido devuelve 201 con un nuevo identificador. En ambos casos, estos
 
 Este último bloque es un extracto; la respuesta completa también contiene el identificador y los datos del turno.
 
-## 8. Pruebas automatizadas y demostración
+## 8. Pruebas automatizadas
 
 Para ejecutar las pruebas de servicios y HTTP:
 
@@ -323,15 +316,7 @@ Para ejecutar las pruebas de servicios y HTTP:
 npm test
 ```
 
-La verificación ejecutada pasó **86 pruebas, sin fallos**. Los resultados están en [docs/pruebas.txt](docs/pruebas.txt); las respuestas HTTP reales, en [docs/evidencia.json](docs/evidencia.json) y [docs/demostracion.txt](docs/demostracion.txt). La demostración inicia un servidor temporal con su propio arreglo y lo cierra al terminar.
-
 La suite comprueba los cálculos, los estados HTTP, los tipos y campos obligatorios, las fechas inválidas y que una entrada incorrecta no interrumpa el servicio.
-
-Para ejecutar la demostración preparada:
-
-```bash
-npm run demo
-```
 
 El archivo `docs/solicitudes.http` reúne solicitudes manuales que se pueden ejecutar con un cliente compatible con archivos HTTP, como la extensión REST Client de VS Code. La explicación para exponer el proyecto está en [la guía de sustentación](docs/sustentacion.md).
 

@@ -147,16 +147,15 @@ curl -i -X POST http://localhost:3000/api/turnos \
 
 El POST devuelve 201, `prioritario: false`, `porcentajeRecargo: 0`, `valorRecargo: 0` y `totalPagar: 100000`. Si se omite `prioritario`, se obtiene la misma regla de tarifa, con un nuevo identificador para cada creación.
 
-### Paso 7. Demostración preparada y pruebas
+### Paso 7. Pruebas automatizadas
 
 Además del recorrido manual, se puede ejecutar:
 
 ```bash
 npm test
-npm run demo
 ```
 
-Revisar los resultados de ambos comandos. El archivo `docs/solicitudes.http` permite repetir las peticiones manuales desde un cliente HTTP compatible.
+Revisar los resultados de las pruebas. El archivo `docs/solicitudes.http` permite repetir las peticiones manuales desde un cliente HTTP compatible.
 
 ## 5. Reparto sugerido de la presentación
 
